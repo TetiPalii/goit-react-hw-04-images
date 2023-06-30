@@ -2,22 +2,16 @@ import { useEffect } from 'react';
 import css from './Modal.module.css';
 
 export const Modal = ({ toggleModal, largeImageURL, value }) => {
-  const onEscape = e => {
-    if (e.code === 'Escape') {
-      toggleModal();
-    }
-  };
   useEffect(() => {
+    const onEscape = e => {
+      if (e.code === 'Escape') {
+        toggleModal();
+      }
+    };
     window.addEventListener('keydown', onEscape);
-    return () => window.removeEventListener('keydown', onEscape);
-  }, [onEscape]);
-  // componentDidMount() {
-  //   window.addEventListener('keydown', onEscape);
-  // }
 
-  // componentWillUnmount() {
-  //   window.removeEventListener('keydown', onEscape);
-  // }
+    return () => window.removeEventListener('keydown', onEscape);
+  }, [toggleModal]);
 
   return (
     <div
